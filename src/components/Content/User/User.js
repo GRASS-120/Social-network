@@ -1,6 +1,7 @@
 import React from 'react';
 import Posts from './Posts/Posts';
 import a from './User.module.css'
+import PostsContainer from './Posts/PostsContainer';
 
 const User = ( {postsPage, dispatch} ) => {
     return (
@@ -17,7 +18,7 @@ const User = ( {postsPage, dispatch} ) => {
           </div>
           <hr></hr>
 
-         <Posts postsPage={postsPage} dispatch={dispatch}/>
+         <PostsContainer postsPage={postsPage} dispatch={dispatch}/>
          
         </div>
     );

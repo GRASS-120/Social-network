@@ -5,19 +5,17 @@ import {addMessageActionCreator, changeNewMessageTextActionCreator} from '../../
 import Message from './Dialog/Message/Message';
 
 
-const Dialogs = ( {dialogsPage, dispatch} ) => {
+const Dialogs = (props) => {
 
-    let {dialogs, messages, newMessageText} = dialogsPage
+    let {dialogs, messages, newMessageText} = props.dialogsPage
 
-    let addNewMessage = () => {
-        let action = addMessageActionCreator()
-        dispatch(action)
+    let onAddNewMessage = () => {
+        props.addNewMessage()
     }
 
     let onMessageChange = (event) => {
         let text = event.target.value
-        let action = changeNewMessageTextActionCreator(text)
-        dispatch(action)
+        props.onMessageChange(text)
     }
 
 
@@ -47,7 +45,7 @@ const Dialogs = ( {dialogsPage, dispatch} ) => {
 
                 <div className={a.new_message}>
                     <input className={a.new_message_text} placeholder="Your text..." onChange={onMessageChange} value={newMessageText}></input>
-                    <button className={a.add_new_message} onClick={addNewMessage}>Enter</button>
+                    <button className={a.add_new_message} onClick={onAddNewMessage}>Enter</button>
                 </div>
             </div>
         </div>

@@ -1,11 +1,10 @@
 import React from 'react';
 import a from './Posts.module.css'
 import Post from '../Post/Post';
-import {addPostActionCreator, changeNewPostTextActionCreator} from '../../../../redux/posts-reducer'
 
-const Posts = ( {postsPage, dispatch} ) => {
+const Posts = (props) => {
 
-    let {posts, newPostText} = postsPage
+    let {posts, newPostText} = props.postsPage
     let newPostElem = React.createRef()
 
 
@@ -13,13 +12,13 @@ const Posts = ( {postsPage, dispatch} ) => {
         return (<Post message={item.message} likes_count={item.likes_count} id={item.id}/>);
     })
 
-    let addPost = () => {
+    let onAddPost = () => {
         props.addPost()
     }
 
     let onPostChange = () => {
-        let action = changeNewPostTextActionCreator(text)
-        dispatch(action);
+        let text = newPostElem.current.value
+        props.changeNewPostText(text);
     }
 
     return (
@@ -27,7 +26,7 @@ const Posts = ( {postsPage, dispatch} ) => {
             
             <p className={a.my_posts}>My posts📢</p>
             <input className={a.new_posts_text} placeholder="Post text..." ref={newPostElem} value={newPostText} onChange={onPostChange}></input>
-            <button className={a.add_post} onClick={addPost}>Add post</button>
+            <button className={a.add_post} onClick={onAddPost}>Add post</button>
 
             {elemPosts}
 
