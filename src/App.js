@@ -9,16 +9,14 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-const App = ( {STATE, dispatch} ) => {
-
-  let {postsPage, dialogsPage, navPage} = STATE
+const App = () => {
 
   return (
       <div className="app-wrapper">
         <Header/>   
-        <Nav navPage={navPage}/>
-            <Route path="/profile" render={ () => <Content postsPage={postsPage} dispatch={dispatch}/> }/> 
-            <Route path="/dialogs" render={ () => <DialogsContainer dialogsPage={dialogsPage} dispatch={dispatch}/> }/>
+        {/* <Nav navPage/> */}
+            <Route path="/profile" render={ () => <Content/>}/> 
+            <Route path="/dialogs" render={ () => <DialogsContainer/>}/>
             <Route path="/news" render={ () => <News/> }/>
             <Route path="/music" render={ () => <Music/> }/>
             <Route path="/settings" render={ () => <Settings/> }/>

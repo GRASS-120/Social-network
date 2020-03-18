@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
 
-let initialSate = {  // начальное значение STATE
+let initialState = {  // начальное значение STATE
     posts: [
         {
             id: 1,
@@ -17,28 +17,35 @@ let initialSate = {  // начальное значение STATE
     newPostText: ''
 }
 
-const postsReducer = (STATE = initialSate, action) => {
+const postsReducer = (state = initialState, action) => {
 
-    if (action.type === ADD_POST){
-        let newPost = {
-            id: 3,
-            // id: STATE.posts[STATE.posts.length - 1].id + 1,
-            message: STATE.newPostText,
-            likes_count: 0
-        }
-    
-        STATE.posts.push(newPost);       // добавление поста
-        STATE.newPostText = ''     // очистка строки после добавления поста
+    switch (action.type){
+        case ADD_POST: {
+            let newPost = {
+                id: 3,
+                // id: STATE.posts[STATE.posts.length - 1].id + 1,
+                message: state.newPostText,
+                likes_count: 0
+            }
+        
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(newPost);       // добавление поста
+            stateCopy.newPostText = ''           // очистка строки после добавления поста
 
-        console.log(newPost)
+            return stateCopy
     }
 
-    else if (action.type === CHANGE_NEW_POST_TEXT){
-        STATE.newPostText = action.text;
-    }
+        case CHANGE_NEW_POST_TEXT : {
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.newPostText = action.text;
 
-    return STATE
-};
+            return stateCopy
+    }
+        default:
+            return state
+}};
 
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const changeNewPostTextActionCreator = (text) => ({type: CHANGE_NEW_POST_TEXT, text: text})

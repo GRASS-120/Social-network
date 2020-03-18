@@ -9,8 +9,6 @@ let reducers = combineReducers({
     navPage: navReducer
 })
 
-let STORE = createStore(reducers)
+let store = createStore(reducers)
 
-
-
-export default STORE
+export default store
