@@ -4,11 +4,11 @@ import {NavLink} from 'react-router-dom'
 
 const Nav = ( {navPage} ) => {
 
-    let {friends} = navPage
+    // let {friends} = navPage
 
-    let friendsElem = friends.map( (item) => {
-      return (<li>{item.name}</li>)
-    })
+    // let friendsElem = friends.map( (item) => {
+    //   return (<li>{item.name}</li>)
+    // })
 
     return (
         <nav className={a.nav}>
@@ -40,13 +40,13 @@ const Nav = ( {navPage} ) => {
           </div>
 
           <div>
-            <NavLink to="">
+            <NavLink to="/users">
               <div id={a.friends}>
-                Friends🤨
+                Find users🤨
               </div>
               </NavLink>
                 <ul className={a.friends_p}>
-                  {friendsElem}
+                  {/* {friendsElem} */}
                 </ul>         
           </div>
 

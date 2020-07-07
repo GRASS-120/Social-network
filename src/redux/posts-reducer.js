@@ -27,21 +27,19 @@ const postsReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likes_count: 0
             }
-        
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost);       // добавление поста
-            stateCopy.newPostText = ''           // очистка строки после добавления поста
 
-            return stateCopy
-    }
+            return {
+                ...state,
+                posts: [...state.posts, newPost],  // добавление поста
+                newPostText: ''                    // очистка строки после добавления поста
+            }
+        }
 
         case CHANGE_NEW_POST_TEXT : {
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.newPostText = action.text;
-
-            return stateCopy
+            return {
+                ...state,
+                newPostText: action.text
+            }
     }
         default:
             return state

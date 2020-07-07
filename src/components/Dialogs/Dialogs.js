@@ -9,15 +9,12 @@ const Dialogs = (props) => {
 
     let {dialogs, messages, newMessageText} = props.dialogsPage
 
-    let onAddNewMessage = () => {
-        props.addNewMessage()
-    }
+    let onAddNewMessage = () => { props.addNewMessage() }
 
     let onMessageChange = (event) => {
         let text = event.target.value
         props.onMessageChange(text)
     }
-
 
     let elemDialogs = dialogs.map( (item) => {
         return (<Dialog name={item.name} id={item.id}/>)

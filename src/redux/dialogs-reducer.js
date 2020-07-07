@@ -3,55 +3,44 @@ const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT'
 
 let initialState = {
     dialogs: [
-        {
-            id: 1,
-            name: "John Snow"
-        },
-        {
-            id: 2,
-            name: "Sara Arrow"
-        },
-        {
-            id: 3,
-            name: "Jack de Vall"
-        },
+        { id: 1, name: "John Snow" },
+        { id: 2, name: "Sara Arrow" },
+        { id: 3, name: "Jack de Vall" },
     ],
+
     messages: [
-        {
-            id: 1,
-            message: "Hi!"
-        },
-        {
-            id: 2,
-            message: "Hello!"
-        },
-        {
-            id: 3,
-            message: "Happy New Year 2020!🎉🎄✨"
-        },
+        { id: 1, message: "Hi!" },
+        { id: 2, message: "Hello!" },
+        { id: 3, message: "Happy New Year 2020!" },
     ],
+
     newMessageText: ''
 }
 
-const dialogsReducer = (STATE = initialState, action) => {
-    
+const dialogsReducer = (state = initialState, action) => {
+
     switch(action.type){
         case ADD_MESSAGE:
-                let newMessage = {
-                    id: STATE.messages[STATE.messages.length - 1].id + 1,
-                    message: STATE.newMessageText
-                }
-            
-                STATE.messages.push(newMessage);
-                STATE.newMessageText = ''
-                return STATE
+    
+            let newMessage = {
+                id: state.messages[state.messages.length - 1].id + 1,
+                message: state.newMessageText
+            } 
+
+            return {
+                ...state,  // ???????? ????? ?????? ????, ??? ????? ??????????
+                newMessageText: '',
+                messages: [...state.messages, newMessage]  // stateCopy.messages.push(newMessage); => push() ??? ?? ???., ??????? ??????????? ??? ???
+            }
 
         case CHANGE_NEW_MESSAGE_TEXT:
-                STATE.newMessageText = action.text
-                return STATE
+            return  {
+                ...state,
+                newMessageText: action.text
+            }
 
         default:
-            return STATE
+            return state
     }
 
 }
