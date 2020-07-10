@@ -4,6 +4,9 @@ import a from './User.module.css'
 import PostsContainer from './Posts/PostsContainer';
 
 const User = ( {postsPage, dispatch} ) => {
+
+    
+
     return (
         <div className={a.user}>
           <div className = {a.user__avatar}>

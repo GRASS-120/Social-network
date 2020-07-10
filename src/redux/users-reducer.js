@@ -1,21 +1,14 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 
 let initialState = {
-    users: [
-        // {id: 1, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTF28fh64NjxRTsy5-BtEQ9vdGIa7CvhZOQjw&usqp=CAU',
-        //  name: 'Ara Toro', location: {country: 'Russia', city: 'Vladivostok'}, status: 'I wanna pizza', following: true},
-
-        // {id: 2, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRmAX7E2poRkYULHkipg0HTjLXyfD0aorSS0w&usqp=CAU',
-        //  name: 'Jack Pitterson', location: {country: 'USA', city: 'Seattle'}, status: 'I hate myself', following: false},
-
-        // {id: 3, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSQh-tSRRz2O43vPz2LCbGAlNwP0teU4yu7UQ&usqp=CAU',
-        //  name: 'Kira Ito', location: {country: 'Japan', city: 'Kioto'}, status: '(some japaneese speach)', following: false},
-
-        // {id: 4, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQr-s-I1GPxvbWoOaKb00Jm4ChPrfSlb26u6A&usqp=CAU',
-        //  name: 'Giorno Govanna', location: {country: 'Italy', city: 'Neaphol'}, status: 'GO IGRAT', following: false},
-    ]
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -30,7 +23,6 @@ const usersReducer = (state = initialState, action) => {
                     return u
                 })
             }
-
         case  UNFOLLOW: {
             return {
                 ...state,
@@ -42,12 +34,16 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
         }
-
         // ин-фа приходит с сервера
         case SET_USERS: {
-            return {...state, users: [...state.users, ...action.users]}  // объединение списка старых юзеров и новых
+            return {...state, users: action.users}  // объединение списка старых юзеров и новых
         }
-
+        case SET_CURRENT_PAGE: {
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return {...state, totalUsersCount: action.totalUsersCount}
+        }
         default:
             return state
     }
@@ -56,5 +52,7 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users) => ({type: SET_USERS, users}) 
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
 
 export default usersReducer
