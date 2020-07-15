@@ -1,6 +1,7 @@
-import React from 'react'
-import style from './Users.module.css'
-import userPhoto from '../../img/6xQ6_ADKgiQ.jpg'
+import React from 'react';
+import style from './Users.module.css';
+import userPhoto from '../../img/6xQ6_ADKgiQ.jpg';
+import Preloader from '../Common/Preloader/Preloader';
 
 let Users = (props) => {
 
@@ -12,6 +13,8 @@ let Users = (props) => {
     }
 
     return <div className={style.users}>
+
+    { props.isFetching ? <Preloader/> : null }
 
      {
         props.users.map(u => <div className={style.users_item}>
