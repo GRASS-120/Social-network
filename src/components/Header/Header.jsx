@@ -1,5 +1,6 @@
 import React from 'react';
 import a from './Header.module.css';
+import { NavLink } from 'react-router-dom';
 
 // как работают названия классов в css модулях
 let classes = {
@@ -7,12 +8,16 @@ let classes = {
     'logo': 'Header_logo__3qQ0a',      // новое, сложное и уникальное название,
 }                                      // которое генерирует браузер
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className={a.header}>
             <div className={a.logo}>
-                <img src="https://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png"></img>
+                <img src="https://lh3.googleusercontent.com/proxy/0ClcIHkUHKVfo8FnfhxnpaOKE-A1SpHH6heAMdH7rprogZmo9BDQbekNl3BvQt-mRS18fQ6y4obnqNXRlLNYre3p7jJ6_1hpYTXwkXnEgm7LZ7OB0ZI"></img>
             </div> 
+            <div className={a.login_block}>
+                { props.isAuth === false ? <NavLink to='/login' className="login_text">Login</NavLink> : <div>{props.login}</div> }
+                
+            </div>
         </header>
     ); 
 };

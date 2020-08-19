@@ -1,5 +1,5 @@
 import React from 'react';
-import User from './User/User';
+import User from './User/UserContainer';
 import a from './Content.module.css';
 
 const Content = ( {postsPage, dispatch} ) => {
