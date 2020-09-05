@@ -3,6 +3,8 @@ import style from './Users.module.css';
 import userPhoto from '../../img/6xQ6_ADKgiQ.jpg';
 import Preloader from '../Common/Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
+import { followAPI } from '../../API/api';
+import { follow, unfollow } from '../../redux/users-reducer';
 
 let Users = (props) => {
 
@@ -24,8 +26,12 @@ let Users = (props) => {
                     <img src={ u.photos.small !== null ? u.photos.small : userPhoto} className={style.user_img}/>
                 </NavLink>
                 { u.followed ?
-                 <button onClick={ () => {props.unfollow(u.id)}} className={style.unfollow_button}>UNFOLLOW</button> :
-                 <button onClick={ () => {props.follow(u.id)}} className={style.follow_button}>FOLLOW</button> 
+
+                 <button disabled={props.followingProgress.some(id => id === u.id)} onClick={ () => { props.unfollow(u.id)} }
+                    className={style.unfollow_button}>UNFOLLOW</button> :
+
+                 <button disabled={props.followingProgress.some(id => id === u.id)} onClick={ () => { props.follow(u.id)} }
+                    className={style.follow_button}>FOLLOW</button> 
                 }
             </div>
             <div className={style.right_block}>

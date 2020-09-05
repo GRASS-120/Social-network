@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { setUserProfile } from '../../../redux/posts-reducer';
 import { withRouter } from 'react-router-dom';
 
-// {postsPage, dispatch}
-
 class UserContainer extends React.Component {
 
   componentDidMount() {
@@ -16,9 +14,7 @@ class UserContainer extends React.Component {
       userId = 2;
     }
 
-    axios.get( `https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(Response => {
-        this.props.setUserProfile(Response.data);
-    });
+    this.props.setUserProfile(userId);
   }
 
   render(){
@@ -33,7 +29,5 @@ let mapStateToProps = (state) => ({
 })
 
 let WithUrlDataContainerComponent = withRouter(UserContainer)
-
-// const UserContainer = connect
 
 export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent);
