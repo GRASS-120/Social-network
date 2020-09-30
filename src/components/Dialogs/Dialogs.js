@@ -2,6 +2,8 @@ import React from 'react';
 import a from "./Dialogs.module.css";
 import Dialog from './Dialog/Dialog';
 import Message from './Dialog/Message/Message';
+import { Redirect } from 'react-router-dom';
+import AddMessageReduxForm from './AddMessageForm';
 
 
 // const Dialogs = (props) => {
@@ -50,16 +52,16 @@ import Message from './Dialog/Message/Message';
 
 class Dialogs extends React.Component {
 
-    onAddNewMessage = () => {
-         this.props.addNewMessage()
-    }
-
-    onMessageChange = (event) => {
-        let text = event.target.value
-        this.props.onMessageChange(text)
+    addNewMessage = (formData) => {
+        this.props.addNewMessage(formData.message)
+        this.props.resetForm()
     }
 
     render(){
+
+        // // Редирект на страницу с авторизацией
+        // if(!this.props.isAuth){ return <Redirect to="/login"/> }
+
         return <div className={a.dialogs_block}>
         
                 <div className={a.dialogs_list}>
@@ -84,10 +86,7 @@ class Dialogs extends React.Component {
                     }
                     </div>
 
-                    <div className={a.new_message}>
-                        <input className={a.new_message_text} placeholder="Your text..." onChange={this.onMessageChange} value={this.props.newMessageText}></input>
-                        <button className={a.add_new_message} onClick={this.onAddNewMessage}>Enter</button>
-                    </div>
+                    <AddMessageReduxForm onSubmit={this.addNewMessage}/>
                 </div>
             </div>
     } 

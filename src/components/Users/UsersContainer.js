@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { follow, unfollow, setCurrentPage,
     toggleFollowingProgress, getUsersThunkCreator, onPageChangeThinkCreator } from '../../redux/users-reducer';
 import Users from './Users';
+import { compose } from 'redux';
 
 // let Users = (props) => {
 
@@ -107,11 +108,13 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsersThunkCreator,
-    onPageChangeThinkCreator
-})(UsersContainer)
+export default compose(
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setCurrentPage,
+        toggleFollowingProgress,
+        getUsersThunkCreator,
+        onPageChangeThinkCreator
+    })
+)(UsersContainer)

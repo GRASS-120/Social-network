@@ -8,20 +8,6 @@
     padding-left: 40px;
 }
 
-.new_posts_text {
-    display: block;
-    margin-left: 50px;
-    width: 84%;
-    height: 40px;
-    padding: 5px;
-    background-color: #dfe4ea;
-    border: 0;
-    box-shadow: 2px 5px 5px silver;
-    transition: 0.3s;
-    font-family: 'Bahnschrift', sans-serif;
-    border: 1px solid silver
-}
-
 .add_post {
     display: block;
     float: right;

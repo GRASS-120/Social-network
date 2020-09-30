@@ -1,6 +1,7 @@
 import React from 'react';
 import a from './Posts.module.css'
 import Post from '../Post/Post';
+import AddPostReduxForm from './AddPostForm';
 
 // const Posts = (props) => {
 
@@ -35,29 +36,27 @@ import Post from '../Post/Post';
 // }
 
 class Posts extends React.Component {
-    constructor(props){
-        super(props)
-        this.newPostElem = React.createRef()
-    }
 
-    onAddPost = () => {
-        this.props.addPost()
-    }
+    // onAddPost = () => {
+    //     this.props.addPost()
+    // }
 
-    onPostChange = () => {
-        let text = this.newPostElem.current.value
-        this.props.changeNewPostText(text);
+    // onPostChange = () => {
+    //     let text = this.newPostElem.current.value
+    //     this.props.changeNewPostText(text);
+    // }
+
+    addNewPost = (formData) => {
+        this.props.addNewPost(formData.message)
+        this.props.resetForm()
     }
 
     render(){
         return <div className={a.posts}>
-                    <p className={a.my_posts}>My posts📢</p>
-                    <input className={a.new_posts_text} placeholder="Post text..." ref={this.newPostElem} value={this.props.newPostText} onChange={this.onPostChange}></input>
-                    <button className={a.add_post} onClick={this.onAddPost}>Add post</button>
-
+                    <AddPostReduxForm onSubmit={this.addNewPost}/>
                     {
                         this.props.posts.map( (item) => 
-                            {return (<Post message={item.message} likes_count={item.likes_count} id={item.id}/>)})
+                            { return (<Post message={item.message} likes_count={item.likes_count} id={item.id}/>) })
                     }
                 </div>
     }

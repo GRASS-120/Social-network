@@ -15,7 +15,9 @@ const Header = (props) => {
                 <img src="https://lh3.googleusercontent.com/proxy/0ClcIHkUHKVfo8FnfhxnpaOKE-A1SpHH6heAMdH7rprogZmo9BDQbekNl3BvQt-mRS18fQ6y4obnqNXRlLNYre3p7jJ6_1hpYTXwkXnEgm7LZ7OB0ZI"></img>
             </div> 
             <div className={a.login_block}>
-                { props.isAuth === false ? <NavLink to='/login' className="login_text">Login</NavLink> : <div>{props.login}</div> }
+                { props.isAuth === false ?
+                    <NavLink to='/login' className="login_text">Login</NavLink> 
+                :   <div>{props.login}<button onClick={props.logout}>logout</button></div> }
                 
             </div>
         </header>

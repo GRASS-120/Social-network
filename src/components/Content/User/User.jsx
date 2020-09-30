@@ -2,8 +2,11 @@ import React from 'react';
 import a from './User.module.css'
 import PostsContainer from './Posts/PostsContainer';
 import Preloader from '../../Common/Preloader/Preloader';
+import UserStatus from './UserStatus';
 
 let User = (props) => {
+
+    debugger
 
     if (!props.profile) {
       return <Preloader />
@@ -27,7 +30,8 @@ let User = (props) => {
       </div>
       <div className={a.user__inf}>
         <p className={a.user__name}>{props.profile.fullName}</p>
-        <p className={a.user__status}>Status: {props.profile.aboutMe}</p>
+
+        <UserStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 
         {props.profile.lookingForAJob == true ? <p className={a.user__date_birth}>{props.profile.lookingForAJobDescription}</p> : null}
 
