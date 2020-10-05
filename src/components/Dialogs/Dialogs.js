@@ -59,8 +59,8 @@ class Dialogs extends React.Component {
 
     render(){
 
-        // // Редирект на страницу с авторизацией
-        // if(!this.props.isAuth){ return <Redirect to="/login"/> }
+        // Редирект на страницу с авторизацией
+        if(!this.props.isAuth){ return <Redirect to="/login"/> }
 
         return <div className={a.dialogs_block}>
         

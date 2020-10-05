@@ -14,6 +14,10 @@ class UserContainer extends React.Component {
 
     if (!userId){
       userId = this.props.authUserId;
+      if (!userId){
+        // Один из вариантов редиректа, но лучше Redirect
+        this.props.history.push("/login")
+      }
     }
 
     this.props.setUserProfile(userId);
@@ -30,7 +34,7 @@ class UserContainer extends React.Component {
 let mapStateToProps = (state) => ({
   profile: state.postsPage.profile,
   status: state.postsPage.status,
-  authUserId: state.auth.userId,
+  authUserId: state.auth.id,
   isAuth: state.auth.isAuth
 })
 

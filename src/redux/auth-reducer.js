@@ -2,13 +2,13 @@ import { reset, stopSubmit } from "redux-form"
 import { authAPI } from "../API/api"
 
 const SET_USER_DATA = 'SET_USER_DATA'
-const LOGIN = 'LOGIN'
+const INITIALIZED = 'INITIALIZED'
 
 let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -25,7 +25,6 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setAuthUserDataRequest = (id, email, login, isAuth) => ({type: SET_USER_DATA, payload: {id, email, login, isAuth}})
-// export const loginRequest = (email, login, rememberMe=false, isAuth) => ({type: LOGIN, email, login, rememberMe, isAuth})
 
 export const getAuthUserData = () => {
     return (dispatch) => {
@@ -38,9 +37,9 @@ export const getAuthUserData = () => {
     }
 }
 
-export const login = (email, password, rememberMe) => {
+export const login = (email, password, rememberMe, captcha) => {
     return (dispatch) => {
-        authAPI.loginRequest(email, password, rememberMe).then(data => {
+        authAPI.loginRequest(email, password, rememberMe, captcha).then(data => {
             console.log(data)
             if (data.resultCode === 0){
                 dispatch(getAuthUserData())

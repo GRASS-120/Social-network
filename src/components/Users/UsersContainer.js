@@ -4,6 +4,8 @@ import { follow, unfollow, setCurrentPage,
     toggleFollowingProgress, getUsersThunkCreator, onPageChangeThinkCreator } from '../../redux/users-reducer';
 import Users from './Users';
 import { compose } from 'redux';
+import { getUsersSuper, getPageSize, getTotalUsersCount,
+     getCurrentPage, getIsFetching, getFollowingProgress } from '../../redux/selectors/users-selectors';
 
 // let Users = (props) => {
 
@@ -69,14 +71,25 @@ class UsersContainer extends React.Component {
     }
 }
 
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingProgress: state.usersPage.followingProgress,
+//     }
+// }
+
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingProgress: state.usersPage.followingProgress,
+        users: getUsersSuper(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingProgress: getFollowingProgress(state),
     }
 }
 
