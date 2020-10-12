@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import User from './User';
 import * as axios from 'axios'
 import { connect } from 'react-redux';
@@ -7,28 +7,26 @@ import { withRouter, Redirect } from 'react-router-dom';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
-class UserContainer extends React.Component {
+const UserContainer = (props) => {
 
-  componentDidMount() {
-    let userId = this.props.match.params.userId
+  useEffect(() => {
+    let userId = props.match.params.userId
 
     if (!userId){
-      userId = this.props.authUserId;
-      if (!userId){
-        // Один из вариантов редиректа, но лучше Redirect
-        this.props.history.push("/login")
-      }
-    }
+          userId = props.authUserId;
+          if (!userId){
+            // Один из вариантов редиректа, но лучше Redirect
+            props.history.push("/login")
+          }
+        }
+    
+        props.setUserProfile(userId);
+        props.getUserStatus(userId);
+  }, [props.authUserId])
 
-    this.props.setUserProfile(userId);
-    this.props.getUserStatus(userId); 
-  }
-
-  render(){
-    return (
-      <User {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateUserStatus}/>
+  return (
+      <User {...props} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}/>
   );
-  }
 };
 
 let mapStateToProps = (state) => ({

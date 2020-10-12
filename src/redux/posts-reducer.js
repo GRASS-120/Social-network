@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS_PROFILE = 'SET_STATUS_PROFILE'
+const DELETE_POST = 'DELETE_POST'
 
 let initialState = {  // начальное значение STATE
     posts: [
@@ -22,7 +23,7 @@ let initialState = {  // начальное значение STATE
     status: ""
 }
 
-const postsReducer = (state = initialState, action) => {
+export const postsReducer = (state = initialState, action) => {
 
     switch (action.type){
         case ADD_POST: {
@@ -53,6 +54,13 @@ const postsReducer = (state = initialState, action) => {
             }
         }
 
+        case DELETE_POST : {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.postId)
+            }
+        }
+
         default:
             return state
 }};
@@ -61,6 +69,7 @@ export const addPostActionCreator = (message) => ({type: ADD_POST, message: mess
 // export const changeNewPostTextActionCreator = (text) => ({type: CHANGE_NEW_POST_TEXT, text: text})
 export const setUserProfileSuccess = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setUserStatus = (status) => ({type: SET_STATUS_PROFILE, status})
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
 export const setUserProfile = (userId) => {
     return (dispatch) => {

@@ -9,7 +9,6 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS'
 
-
 let initialState = {
     users: [],
     pageSize: 10,
@@ -19,8 +18,7 @@ let initialState = {
     followingProgress: []
 }
 
-
-const usersReducer = (state = initialState, action) => {
+export const usersReducer = (state = initialState, action) => {
     switch(action.type){
         case FOLLOW: {
             return {
@@ -68,7 +66,6 @@ const usersReducer = (state = initialState, action) => {
             return state
     }
 }
-
 
 export const followSuccess = (userId) => ({type: FOLLOW, userId})
 export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId})

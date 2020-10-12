@@ -23,7 +23,7 @@ const AddMessageForm = (props) => {
         </div>
     </form>
 }
-debugger
+
 const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm)
 
 export default AddMessageReduxForm

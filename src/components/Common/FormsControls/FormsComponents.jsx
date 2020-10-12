@@ -2,8 +2,6 @@ import React from 'react'
 import a from './FormsComponents.module.css'
 
 let FormsControl = ({input, meta, child, ...props}) => {
-
-    console.log(input, meta, props)
     
     let hasError = meta.touched && meta.error
 

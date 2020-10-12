@@ -35,7 +35,7 @@ import AddPostReduxForm from './AddPostForm';
 //     )
 // }
 
-class Posts extends React.Component {
+class Posts extends React.PureComponent {
 
     // onAddPost = () => {
     //     this.props.addPost()
@@ -46,12 +46,19 @@ class Posts extends React.Component {
     //     this.props.changeNewPostText(text);
     // }
 
+    // shouldComponentUpdate(nextProps, nextState){
+    //     return nextProps != this.props || nextState != this.state;
+    // }
+
     addNewPost = (formData) => {
         this.props.addNewPost(formData.message)
         this.props.resetForm()
     }
 
     render(){
+        console.log('RENDER')
+        console.log(this.props)
+
         return <div className={a.posts}>
                     <AddPostReduxForm onSubmit={this.addNewPost}/>
                     {
