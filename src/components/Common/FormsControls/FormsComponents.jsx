@@ -1,14 +1,14 @@
 import React from 'react'
 import a from './FormsComponents.module.css'
 
-let FormsControl = ({input, meta, child, ...props}) => {
+let FormsControl = ({input, meta: {touched, error}, child, ...props}) => {
     
-    let hasError = meta.touched && meta.error
+    let hasError = touched && error
 
     return (
         <div className={a.login + " " + (hasError ? a.error :  "")}>
             {props.children}
-            { hasError && <span>{meta.error}</span> }
+            { hasError && <span>{error}</span> }
         </div>
     )
 }
@@ -27,5 +27,3 @@ export let LoginInput = (props) => {
     const {input, meta, child, classInput, ...restProps} = props
     return(<FormsControl {...props}><input {...restProps} {...input} /></FormsControl>)
 }
-
-// ОБНУЛЕНИЕ ФОРМЫ!

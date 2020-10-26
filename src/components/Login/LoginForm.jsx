@@ -6,8 +6,8 @@ import a from '../Common/FormsControls/FormsComponents.module.css'
 
 const maxLength30 =  maxLengthCreator(30)
 
-const LoginForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+const LoginForm = ({handleSubmit, error}) => {
+    return <form onSubmit={handleSubmit}>
                 <div>
                     <Field component={LoginInput} name="email" type="text" placeholder="Email" validate={[requiredField, maxLength30, emailValidation]}/>
                 </div>
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
                 <div>
                     <Field component={LoginInput} name="rememberMe" type="checkbox"/>remember me
                 </div>
-                { props.error && <div className={a.formSummaryError}> {props.error} </div> }
+                { error && <div className={a.formSummaryError}> {error} </div> }
                 <div>
                     {/* <Field component='div' name="captcha"/> */}
                 </div>

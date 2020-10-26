@@ -48,7 +48,8 @@ class UsersContainer extends React.Component {
     // ! конструктор писать не надо, если класс только отрисовывает, все ПО УМОЛЧАНИЮ
 
     componentDidMount(){
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props
+        this.props.getUsersThunkCreator(currentPage, pageSize);
     }
 
     onPageChange = (pageNumber, pageSize) => {
